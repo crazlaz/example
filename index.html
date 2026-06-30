@@ -436,6 +436,64 @@
       .nav-links a { padding:0 .55rem;font-size:.78rem }
       .wrap     { padding:.85rem .65rem }
     }
+
+    /* ── FILTER TABS ─────────────────────────────────── */
+    .filter-tabs { display:flex;gap:.5rem;margin-bottom:1.25rem;flex-wrap:wrap }
+    .ftab {
+      padding:.35rem .9rem;border-radius:999px;font-size:.8rem;font-weight:600;
+      cursor:pointer;border:1px solid var(--border);background:var(--surf2);
+      color:var(--text3);transition:all .15s;user-select:none;
+    }
+    .ftab:hover    { border-color:var(--gold);color:var(--gold) }
+    .ftab.active   { background:var(--gold);color:#000;border-color:var(--gold) }
+
+    /* ── MILESTONES ──────────────────────────────────── */
+    .ms-project {
+      background:var(--surf);border:1px solid var(--border);border-radius:12px;
+      padding:1.35rem;margin-bottom:1rem;
+    }
+    .ms-proj-head {
+      display:flex;align-items:flex-start;justify-content:space-between;
+      margin-bottom:.75rem;flex-wrap:wrap;gap:.5rem;
+    }
+    .ms-proj-name   { font-size:1rem;font-weight:800 }
+    .ms-proj-client { font-size:.8rem;color:var(--text3);margin-top:.12rem }
+    .ms-proj-val    { font-size:.9rem;font-weight:700;color:var(--gold);white-space:nowrap }
+    .ms-prog-wrap   { margin-bottom:1rem }
+    .ms-prog-label  { display:flex;justify-content:space-between;font-size:.73rem;color:var(--text3);margin-bottom:.35rem }
+    .ms-prog        { height:6px;background:var(--surf2);border-radius:3px;overflow:hidden }
+    .ms-prog-fill   { height:100%;border-radius:3px;transition:width .6s ease }
+    .ms-list        { display:flex;flex-direction:column;gap:.5rem }
+    .ms-item {
+      display:flex;align-items:center;gap:.8rem;
+      padding:.6rem .75rem;border-radius:8px;background:var(--surf2);
+    }
+    .ms-dot {
+      width:22px;height:22px;border-radius:50%;flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;font-size:.68rem;
+    }
+    .ms-done    { background:#052e16;color:#86efac }
+    .ms-active  { background:#1e3a5f;color:#93c5fd }
+    .ms-pending { background:var(--surf3);color:var(--text3);border:1px solid var(--border) }
+    .ms-overdue { background:#450a0a;color:#fca5a5 }
+    .ms-body    { flex:1;min-width:0 }
+    .ms-name    { font-size:.86rem;font-weight:600 }
+    .ms-due     { font-size:.73rem;color:var(--text3);margin-top:.1rem }
+    .ms-mini-bar { height:3px;background:var(--surf);border-radius:2px;margin-top:.3rem;overflow:hidden }
+    .ms-mini-fill{ height:100%;background:var(--gold);border-radius:2px }
+    .ms-right   { text-align:right;font-size:.75rem;color:var(--text3);flex-shrink:0 }
+
+    /* ── DEAL DETAIL MODAL ───────────────────────────── */
+    .deal-modal-header {
+      display:flex;align-items:flex-start;gap:.9rem;margin-bottom:1.25rem;
+    }
+    .deal-stage-dot {
+      width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:.35rem;
+    }
+    .deal-kpis { display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;margin-bottom:1.1rem }
+    .deal-kpi  { background:var(--surf2);border-radius:8px;padding:.65rem .75rem }
+    .deal-kpi .dk-label { font-size:.68rem;text-transform:uppercase;letter-spacing:.5px;color:var(--text3) }
+    .deal-kpi .dk-val   { font-size:1rem;font-weight:800;margin-top:.15rem }
   </style>
 </head>
 <body>
@@ -451,6 +509,7 @@
     <a href="#" data-page="deals">Deals</a>
     <a href="#" data-page="invoices">Invoices</a>
     <a href="#" data-page="analytics">Analytics</a>
+    <a href="#" data-page="milestones">Milestones</a>
   </div>
   <div class="nav-right">
     <span class="demo-chip">LIVE DEMO</span>
@@ -468,6 +527,7 @@
     <a href="#" data-page="deals" data-mobile-link>Deals</a>
     <a href="#" data-page="invoices" data-mobile-link>Invoices</a>
     <a href="#" data-page="analytics" data-mobile-link>Analytics</a>
+    <a href="#" data-page="milestones" data-mobile-link>Milestones</a>
     <div class="drawer-footer">
       <span>◈ AtlasCRM</span>
       <span class="demo-chip" style="display:inline-flex">LIVE DEMO</span>
@@ -857,7 +917,65 @@
     </div>
   </div>
 
+  <!-- ═══════════════════════════════ MILESTONES ════ -->
+  <div class="page" id="page-milestones">
+    <div class="ph">
+      <div>
+        <h1>Milestones</h1>
+        <div class="ph-sub">Active project milestone tracker</div>
+      </div>
+      <button class="btn btn-gold btn-sm">+ Add Milestone</button>
+    </div>
+
+    <div class="kpi-row" style="margin-bottom:1.25rem">
+      <div class="kpi">
+        <div class="kpi-icon">🎯</div>
+        <div class="kpi-label">Total Milestones</div>
+        <div class="kpi-val">21</div>
+        <div class="kpi-trend"><span class="muted">across 4 projects</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-icon">✅</div>
+        <div class="kpi-label">Completed</div>
+        <div class="kpi-val" style="color:var(--green)">9</div>
+        <div class="kpi-trend"><span class="up">↑ 43%</span><span class="muted">completion rate</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-icon">⚙️</div>
+        <div class="kpi-label">In Progress</div>
+        <div class="kpi-val" style="color:var(--blue)">3</div>
+        <div class="kpi-trend"><span class="muted">active now</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-icon">⚠️</div>
+        <div class="kpi-label">Overdue</div>
+        <div class="kpi-val" style="color:var(--red)">2</div>
+        <div class="kpi-trend"><span class="down">needs attention</span></div>
+      </div>
+    </div>
+
+    <div class="filter-tabs" id="ms-filters">
+      <div class="ftab active" data-filter="all">All Projects</div>
+      <div class="ftab" data-filter="active">In Progress</div>
+      <div class="ftab" data-filter="overdue">Overdue</div>
+      <div class="ftab" data-filter="done">Completed</div>
+    </div>
+
+    <div id="ms-board"></div>
+  </div>
+
 </div><!-- /wrap -->
+
+<!-- Deal Detail Modal -->
+<div class="overlay" id="deal-modal">
+  <div class="modal" style="max-width:600px">
+    <div class="modal-head">
+      <h2 id="dm-title">Deal</h2>
+      <button class="modal-x" onclick="closeDealMo()">✕</button>
+    </div>
+    <div id="dm-body"></div>
+  </div>
+</div>
 
 <!-- Contact Detail Modal -->
 <div class="overlay" id="co-modal">
@@ -1024,28 +1142,7 @@ document.getElementById('contact-search').addEventListener('input', function() {
   ));
 });
 
-// ── Kanban board ───────────────────────────────────────────────────────────
-(function buildKanban() {
-  document.getElementById('kanban').innerHTML = Object.entries(DEALS).map(([stage, cards]) => `
-    <div>
-      <div class="k-head">
-        <span class="k-name">${stage}</span>
-        <span class="k-count">${cards.length}</span>
-      </div>
-      <div class="k-cards">
-        ${cards.map(d => `
-          <div class="deal-card">
-            <div class="dc-co">${d.co}</div>
-            <div class="dc-title">${d.title}</div>
-            <div class="dc-val">${fmt$(d.val)}</div>
-            <div class="dc-meta">
-              <span>⏱ ${d.d}d in stage</span>
-              <span class="badge ${K_BADGE[stage]}" style="padding:.1rem .38rem;font-size:.62rem">${stage}</span>
-            </div>
-          </div>`).join('')}
-      </div>
-    </div>`).join('');
-})();
+// ── Kanban board — built later after openDeal is defined ──────────────────
 
 // ── Contact modal ──────────────────────────────────────────────────────────
 function openContact(id) {
@@ -1228,6 +1325,234 @@ function initAnalytics() {
 // init dashboard on load
 initDashboard();
 inited.dashboard = true;
+
+// ── Projects / Milestones data ─────────────────────────────────────────────
+const PROJECTS = [
+  {
+    id:1, name:'Custom Web Application', client:'Acme Solutions Inc.',
+    value:28000, stage:'Proposal', days:18, av:['#1e3a5f','#93c5fd'],
+    desc:'Full-stack web application with CRM integrations, user auth, and admin portal.',
+    milestones:[
+      {name:'Discovery & Scoping',   due:'Jun 1',  status:'done',    pct:100},
+      {name:'Wireframes & Design',   due:'Jun 10', status:'done',    pct:100},
+      {name:'Frontend Development',  due:'Jul 5',  status:'active',  pct:65 },
+      {name:'Backend Development',   due:'Jul 15', status:'active',  pct:40 },
+      {name:'QA & Testing',          due:'Jul 22', status:'pending', pct:0  },
+      {name:'Launch & Handoff',      due:'Jul 30', status:'pending', pct:0  },
+    ]
+  },
+  {
+    id:2, name:'E-commerce Platform', client:'BlueSky Media',
+    value:15000, stage:'Qualified', days:9, av:['#450a0a','#fca5a5'],
+    desc:'Shopify-integrated storefront with custom checkout flow and analytics dashboard.',
+    milestones:[
+      {name:'Kickoff Meeting',        due:'Jun 5',  status:'done',    pct:100},
+      {name:'Design System',          due:'Jun 28', status:'overdue', pct:80 },
+      {name:'Product Catalog Build',  due:'Jul 10', status:'pending', pct:0  },
+      {name:'Checkout & Payments',    due:'Jul 20', status:'pending', pct:0  },
+      {name:'Go Live',                due:'Jul 31', status:'pending', pct:0  },
+    ]
+  },
+  {
+    id:3, name:'CRM Portal', client:'Coastal Ventures',
+    value:12500, stage:'Proposal', days:14, av:['#2a1f4a','#c4b5fd'],
+    desc:'Custom CRM with lead tracking, pipeline view, and email sequence automation.',
+    milestones:[
+      {name:'Requirements Gathering', due:'Jun 30', status:'overdue', pct:90 },
+      {name:'Database Schema Design', due:'Jul 8',  status:'pending', pct:0  },
+      {name:'Admin Dashboard',        due:'Jul 18', status:'pending', pct:0  },
+      {name:'Client Portal',          due:'Jul 25', status:'pending', pct:0  },
+      {name:'Training & Docs',        due:'Aug 1',  status:'pending', pct:0  },
+    ]
+  },
+  {
+    id:4, name:'CRM Integration', client:'Velocity Apps',
+    value:18500, stage:'Won', days:24, av:['#052e16','#86efac'],
+    desc:'Bi-directional API sync between HubSpot, Stripe, and internal reporting tools.',
+    milestones:[
+      {name:'API Mapping & Planning', due:'May 20', status:'done',    pct:100},
+      {name:'Data Migration',         due:'May 28', status:'done',    pct:100},
+      {name:'Integration Build',      due:'Jun 8',  status:'done',    pct:100},
+      {name:'Testing & Validation',   due:'Jun 16', status:'done',    pct:100},
+      {name:'Production Deployment',  due:'Jun 22', status:'done',    pct:100},
+    ]
+  },
+];
+
+function projProgress(p) {
+  const done = p.milestones.filter(m=>m.status==='done').length;
+  return Math.round((done / p.milestones.length) * 100);
+}
+
+const MS_ICON = {done:'✓', active:'●', pending:'○', overdue:'!'};
+const MS_DOT  = {done:'ms-done', active:'ms-active', pending:'ms-pending', overdue:'ms-overdue'};
+const MS_COLOR= {done:'#22c55e', active:'#3b82f6', pending:'var(--text3)', overdue:'var(--red)'};
+
+// ── Milestones page ────────────────────────────────────────────────────────
+function renderMilestones(filter='all') {
+  const board = document.getElementById('ms-board');
+  let projects = PROJECTS;
+  if (filter==='active')  projects = projects.filter(p => p.milestones.some(m=>m.status==='active'));
+  if (filter==='overdue') projects = projects.filter(p => p.milestones.some(m=>m.status==='overdue'));
+  if (filter==='done')    projects = projects.filter(p => p.milestones.every(m=>m.status==='done'));
+
+  if (!projects.length) {
+    board.innerHTML = `<div class="card" style="text-align:center;padding:2.5rem;color:var(--text3)">No projects match this filter.</div>`;
+    return;
+  }
+
+  board.innerHTML = projects.map(p => {
+    const pct = projProgress(p);
+    const barColor = pct===100 ? '#22c55e' : pct>50 ? 'var(--gold)' : '#3b82f6';
+    return `
+    <div class="ms-project">
+      <div class="ms-proj-head">
+        <div>
+          <div class="ms-proj-name">${p.name}</div>
+          <div class="ms-proj-client">${p.client} · <span class="badge ${K_BADGE[p.stage]||'b-lead'}" style="font-size:.65rem;padding:.1rem .4rem">${p.stage}</span></div>
+        </div>
+        <div class="ms-proj-val">${fmt$(p.value)}</div>
+      </div>
+      <div class="ms-prog-wrap">
+        <div class="ms-prog-label">
+          <span>Overall Progress</span>
+          <span style="color:${barColor};font-weight:700">${pct}%</span>
+        </div>
+        <div class="ms-prog"><div class="ms-prog-fill" style="width:${pct}%;background:${barColor}"></div></div>
+      </div>
+      <div class="ms-list">
+        ${p.milestones.map((m,i) => `
+          <div class="ms-item">
+            <div class="ms-dot ${MS_DOT[m.status]}">${MS_ICON[m.status]}</div>
+            <div class="ms-body">
+              <div class="ms-name" style="${m.status==='done'?'text-decoration:line-through;color:var(--text3)':''}">${m.name}</div>
+              <div class="ms-due">Due ${m.due}${m.status==='overdue'?' · <span style="color:var(--red);font-weight:700">Overdue</span>':''}</div>
+              ${m.pct>0&&m.pct<100?`<div class="ms-mini-bar"><div class="ms-mini-fill" style="width:${m.pct}%"></div></div>`:''}
+            </div>
+            <div class="ms-right">
+              ${m.pct>0?`<span style="color:${MS_COLOR[m.status]};font-weight:700">${m.pct}%</span>`:''}
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+document.getElementById('ms-filters').addEventListener('click', e => {
+  const tab = e.target.closest('.ftab');
+  if (!tab) return;
+  document.querySelectorAll('#ms-filters .ftab').forEach(t=>t.classList.remove('active'));
+  tab.classList.add('active');
+  renderMilestones(tab.dataset.filter);
+});
+
+// ── Deal detail modal ──────────────────────────────────────────────────────
+function openDeal(stageKey, idx) {
+  const d = DEALS[stageKey]?.[idx];
+  if (!d) return;
+  const proj = PROJECTS.find(p => p.client===d.co && p.name===d.title) ||
+               PROJECTS.find(p => p.client===d.co) || null;
+
+  document.getElementById('dm-title').textContent = d.title;
+
+  const stageBadge = K_BADGE[stageKey] || 'b-lead';
+  const pct = proj ? projProgress(proj) : null;
+  const barColor = pct===100?'#22c55e':pct>50?'var(--gold)':'#3b82f6';
+
+  document.getElementById('dm-body').innerHTML = `
+    <div style="display:flex;gap:.6rem;align-items:center;margin-bottom:1rem;flex-wrap:wrap">
+      <span class="badge ${stageBadge}">${stageKey}</span>
+      <span class="muted" style="font-size:.83rem">${d.co}</span>
+      <span class="muted" style="font-size:.83rem">· ⏱ ${d.d} days in stage</span>
+    </div>
+    <div class="deal-kpis">
+      <div class="deal-kpi">
+        <div class="dk-label">Value</div>
+        <div class="dk-val gold">${fmt$(d.val)}</div>
+      </div>
+      <div class="deal-kpi">
+        <div class="dk-label">Stage</div>
+        <div class="dk-val">${stageKey}</div>
+      </div>
+      <div class="deal-kpi">
+        <div class="dk-label">Days Open</div>
+        <div class="dk-val">${d.d}d</div>
+      </div>
+    </div>
+    ${proj ? `
+    <div style="border-top:1px solid var(--border);padding-top:1rem;margin-top:.25rem">
+      <div class="card-head" style="margin-bottom:.75rem">
+        Project Milestones
+        <span>${pct}% complete</span>
+      </div>
+      <div class="ms-prog" style="margin-bottom:1rem">
+        <div class="ms-prog-fill" style="width:${pct}%;background:${barColor}"></div>
+      </div>
+      <div class="ms-list">
+        ${proj.milestones.map(m=>`
+          <div class="ms-item">
+            <div class="ms-dot ${MS_DOT[m.status]}">${MS_ICON[m.status]}</div>
+            <div class="ms-body">
+              <div class="ms-name" style="${m.status==='done'?'text-decoration:line-through;color:var(--text3)':''}">${m.name}</div>
+              <div class="ms-due">Due ${m.due}${m.status==='overdue'?' · <span style="color:var(--red);font-weight:700">Overdue</span>':''}</div>
+              ${m.pct>0&&m.pct<100?`<div class="ms-mini-bar"><div class="ms-mini-fill" style="width:${m.pct}%"></div></div>`:''}
+            </div>
+            <div class="ms-right">${m.pct>0?`<span style="color:${MS_COLOR[m.status]};font-weight:700">${m.pct}%</span>`:''}</div>
+          </div>`).join('')}
+      </div>
+    </div>` : `
+    <div style="border-top:1px solid var(--border);padding-top:1rem;margin-top:.25rem">
+      <div class="card-head">Recent Activity</div>
+      <div class="feed">
+        <div class="feed-item">
+          <div class="feed-icon fi-call">📞</div>
+          <div class="feed-body">Discovery call completed<div class="feed-time">3 days ago</div></div>
+        </div>
+        <div class="feed-item">
+          <div class="feed-icon fi-email">✉</div>
+          <div class="feed-body">Proposal sent to client<div class="feed-time">1 week ago</div></div>
+        </div>
+      </div>
+    </div>`}`;
+
+  document.getElementById('deal-modal').classList.add('open');
+}
+
+function closeDealMo() { document.getElementById('deal-modal').classList.remove('open') }
+document.getElementById('deal-modal').addEventListener('click', e => {
+  if (e.target===e.currentTarget) closeDealMo();
+});
+
+// ── make kanban cards open deal modal ─────────────────────────────────────
+// rebuild kanban with clickable cards
+(function buildKanban() {
+  document.getElementById('kanban').innerHTML = Object.entries(DEALS).map(([stage, cards]) => `
+    <div>
+      <div class="k-head">
+        <span class="k-name">${stage}</span>
+        <span class="k-count">${cards.length}</span>
+      </div>
+      <div class="k-cards">
+        ${cards.map((d,i) => `
+          <div class="deal-card" onclick="openDeal('${stage}',${i})">
+            <div class="dc-co">${d.co}</div>
+            <div class="dc-title">${d.title}</div>
+            <div class="dc-val">${fmt$(d.val)}</div>
+            <div class="dc-meta">
+              <span>⏱ ${d.d}d</span>
+              <span class="badge ${K_BADGE[stage]}" style="padding:.1rem .38rem;font-size:.62rem">${stage}</span>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+})();
+
+// ── init milestones when page loads ───────────────────────────────────────
+const _origInitPage = initPage;
+function initPage(name) {
+  _origInitPage(name);
+  if (name==='milestones') renderMilestones('all');
+}
 </script>
 </body>
 </html>
