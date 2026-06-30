@@ -811,7 +811,7 @@ function renderPanelBody(){
             <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--text3);margin-bottom:.3rem"><span>Lead Health</span><span style="color:${col};font-weight:700">${pct}/100</span></div>
             <div class="score-bar"><div class="score-fill" style="width:${pct}%;background:${col}"></div></div>
           </div>
-          <div style="text-align:center;flex-shrink:0"><div style="font-size:1.8rem;font-weight:900;color:${col}">${pct}</div><div style="font-size:.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:.4px">${pct>=80?'Hot':'pct>=60?Warm':'Cold'}</div></div>
+          <div style="text-align:center;flex-shrink:0"><div style="font-size:1.8rem;font-weight:900;color:${col}">${pct}</div><div style="font-size:.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:.4px">${pct>=80?'Hot':pct>=60?'Warm':'Cold'}</div></div>
         </div>
       </div>
       <div class="divider"></div>
